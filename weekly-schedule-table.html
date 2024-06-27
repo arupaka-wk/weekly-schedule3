@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>週間スケジュール</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icon.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            font-size: 12px;
+        }
+        select {
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 12px;
+        }
+        .flex-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+        .flex-item {
+            border: 1px solid black;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .morning { background-color: #FFFF99; }
+        .afternoon { background-color: #FFA500; }
+        .evening { background-color: #E0FFFF; }
+        #taskList, #goalList {
+            list-style-type: none;
+            padding: 0;
+        }
+        #taskList li, #goalList li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        #taskList li span, #goalList li span {
+            margin-right: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: calc(100% - 20px);
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <table id="scheduleTable">
+        <tr>
+            <th>時間</th>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th>土</th>
+            <th>日</th>
+        </tr>
+        <tr class="morning">
+            <td colspan="8" style="text-align: center; font-weight: bold;">朝の時間帯</td>
+        </tr>
+        <tr class="morning">
+            <td>5:30-6:00</td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+        </tr>
+        <tr class="morning">
+            <td>6:00-6:30</td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+        </tr>
+        <tr class="morning">
+            <td>6:30-6:50</td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+        </tr>
+        <tr class="afternoon">
+            <td colspan="8" style="text-align: center; font-weight: bold;">早出後の時間帯</td>
+        </tr>
+        <tr class="afternoon">
+            <td>16:00-16:30</td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+        </tr>
+        <tr class="afternoon">
+            <td>16:30-17:00</td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+        </tr>
+        <tr class="afternoon">
+            <td>17:00-17:30</td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+        </tr>
+        <tr class="afternoon">
+            <td>17:30-18:00</td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+        </tr>
+        <tr class="evening">
+            <td colspan="8" style="text-align: center; font-weight: bold;">夕の時間帯</td>
+        </tr>
+        <tr class="evening">
+            <td>18:00-18:30</td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+        </tr>
+        <tr class="evening">
+            <td>18:30-19:00</td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+        </tr>
+        <tr class="evening">
+            <td>19:00-19:30</td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+        </tr>
+        <tr class="evening">
+            <td>19:30-20:00</td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+        </tr>
+        <tr class="evening">
+            <td>20:00-20:30</td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+        </tr>
+        <tr class="evening">
+            <td>20:30-21:00</td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+        </tr>
+        <tr class="evening">
+            <td>21:00-21:30</td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+        </tr>
+        <tr class="evening">
+            <td>21:30-22:00</td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+            <td><select></select></td>
+        </tr>
+    </table>
+
+    <div class="flex-container">
+        <div class="flex-item">
+            <h3>用事一覧</h3>
+            <ol id="taskList">
+                <li><span>1.</span><input type="text" placeholder="用事を入力"></li>
+                <li><span>2.</span><input type="text" placeholder="用事を入力"></li>
+                <li><span>3.</span><input type="text" placeholder="用事を入力"></li>
+                <li><span>4.</span><input type="text" placeholder="用事を入力"></li>
+                <li><span>5.</span><input type="text" placeholder="用事を入力"></li>
+                <li><span>6.</span><input type="text" placeholder="用事を入力"></li>
+                <li><span>7.</span><input type="text" placeholder="用事を入力"></li>
+            </ol>
+            <button onclick="updateDropdowns()">用事を更新</button>
+        </div>
+        <div class="flex-item">
+            <h3>目標一覧</h3>
+            <ol id="goalList">
+                <li><input type="text" placeholder="目標を入力"></li>
+                <li><input type="text" placeholder="目標を入力"></li>
+                <li><input type="text" placeholder="目標を入力"></li>
+                <li><input type="text" placeholder="目標を入力"></li>
+                <li><input type="text" placeholder="目標を入力"></li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function updateDropdowns() {
+            const taskInputs = document.querySelectorAll('#taskList input');
+            const selects = document.querySelectorAll('table select');
+            
+            selects.forEach(select => {
+                const currentValue = select.value;
+                select.innerHTML = '<option value=""></option>';
+                taskInputs.forEach((input, index) => {
+                    if (input.value.trim() !== '') {
+                        const option = document.createElement('option');
+                        option.value = index + 1;
+                        option.textContent = `${index + 1}. ${input.value}`;
+                        select.appendChild(option);
+                    }
+                });
+                select.value = currentValue;
+            });
+
+            saveData();
+        }
+
+        function saveData() {
+            const tasks = Array.from(document.querySelectorAll('#taskList input')).map(input => input.value);
+            const goals = Array.from(document.querySelectorAll('#goalList input')).map(input => input.value);
+            const schedule = Array.from(document.querySelectorAll('table select')).map(select => select.value);
+
+            localStorage.setItem('weeklyScheduleData', JSON.stringify({ tasks, goals, schedule }));
+        }
+
+        function loadData() {
+            const data = JSON.parse(localStorage.getItem('weeklyScheduleData'));
+            if (data) {
+                const taskInputs = document.querySelectorAll('#taskList input');
+                const goalInputs = document.querySelectorAll('#goalList input');
+                const selects = document.querySelectorAll('table select');
+
+                data.tasks.forEach((task, index) => {
+                    if (taskInputs[index]) taskInputs[index].value = task;
+                });
+
+                data.goals.forEach((goal, index) => {
+                    if (goalInputs[index]) goalInputs[index].value = goal;
+                });
+
+                data.schedule.forEach((value, index) => {
+                    if (selects[index]) selects[index].value = value;
+                });
+            }
+        }
+
+        // 初期化時にデータを読み込み、ドロップダウンを更新
+        loadData();
+        updateDropdowns();
+
+        // 入力フィールドの変更を監視して自動保存
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('change', saveData);
+        });
+        document.querySelectorAll('select').forEach(select => {
+            select.addEventListener('change', saveData);
+        });
+
+        // Service Workerの登録
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then((reg) => console.log('Service worker registered.', reg))
+                .catch((err) => console.log('Service worker registration failed.', err));
+        }
+    </script>
+</body>
+</html>
